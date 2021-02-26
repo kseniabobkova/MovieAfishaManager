@@ -6,7 +6,7 @@ import ru.netology.domain.MovieItem;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-public class AfishaManagerTestNonEmptyWithSetup {
+public class TestAfishaManagerMoreThanTen {
     private AfishaManager manager = new AfishaManager();
     private MovieItem first = new MovieItem(1,  "first" );
     private MovieItem second = new MovieItem(2, "second");
@@ -45,24 +45,35 @@ public class AfishaManagerTestNonEmptyWithSetup {
 
 
     @Test
-    public void shouldRemoveIfExists() {
-        int idToRemove = 3;
+    public void shouldRemoveIfExistsLast() {
+        int idToRemove = 11;
         manager.removeById(idToRemove);
 
         MovieItem[] actual = manager.getAll();
-        MovieItem[] expected = new MovieItem[]{eleventh,tenth,ninth,eighth,seventh,sixth,fifth,fourth,second,first};
+        MovieItem[] expected = new MovieItem[]{tenth,ninth,eighth,seventh,sixth,fifth,fourth,third,second,first};
 
         assertArrayEquals(expected, actual);
     }
 
     @Test
-    public void shouldNotRemoveIfNotExists() {
+    public void shouldNotRemoveIfNotExistsFirst() {
+        int idToRemove = 1;
+
+        manager.removeById(idToRemove);
+
+        MovieItem[] actual = manager.getAll();
+        MovieItem[] expected = new MovieItem[]{eleventh,tenth,ninth,eighth,seventh,sixth,fifth,fourth, third, second};
+
+        assertArrayEquals(expected, actual);
+    }
+    @Test
+    public void shouldNotRemoveIfNotExistsMiddle() {
         int idToRemove = 4;
 
         manager.removeById(idToRemove);
 
         MovieItem[] actual = manager.getAll();
-        MovieItem[] expected = new MovieItem[]{third, second, first};
+        MovieItem[] expected = new MovieItem[]{eleventh,tenth,ninth,eighth,seventh,sixth,fifth,third, second,first};
 
         assertArrayEquals(expected, actual);
     }

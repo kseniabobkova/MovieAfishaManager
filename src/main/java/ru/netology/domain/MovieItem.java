@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class MovieItem {
-    private int id;
     private int movieId;
     private String movieName;
     private String imageUrl;
@@ -18,6 +17,10 @@ public class MovieItem {
     public MovieItem(int movieId, String movieName) {
         this.movieId = movieId;
         this.movieName = movieName;
+    }
+
+    public int getMovieId() {
+        return movieId;
     }
 }
 
